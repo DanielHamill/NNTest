@@ -1,6 +1,9 @@
 import tensorflow as tf
-#import win_unicode_console as wc
-#wc.enable()
+import numpy as np
+from sys import platform
+if platform == "win32":
+	import win_unicode_console as wc
+	wc.enable()
 
 x = [[0, 0],[0, 1],[1, 0],[1, 1]]
 y = [[0], [1], [1], [0]]
@@ -14,13 +17,11 @@ N_INPUT_NODES = 2
 N_HIDDEN_NODES = 5
 N_OUTPUT_NODES = 1
 
-x_ = tf.placeholder(tf.float32, shape=[N_TRAINING, N_INPUT_NODES], name="input")
 y_ = tf.placeholder(tf.float32, shape=[N_TRAINING, N_OUTPUT_NODES], name="output")
 
-#weight1 = tf.Variable(tf.random_uniform([N_HIDDEN_NODES,N_INPUT_NODES], -1, 1), name="weight1")
+x_ = tf.placeholder(tf.float32, shape=[N_TRAINING, N_INPUT_NODES], name="input")
 weight1 = tf.Variable(tf.random_uniform([N_INPUT_NODES, N_HIDDEN_NODES], -1, 1), name="weight1")
-weight2 = tf.Variable(tf.random_uniform([N_HIDDEN_NODES, N_INPUT_NODES], -1, 1), name="weight2")
-#weight2 = tf.Variable(tf.random_uniform([N_INPUT_NODES, N_HIDDEN_NODES], -1, 1), name="weight2")
+weight2 = tf.Variable(tf.random_uniform([N_HIDDEN_NODES, N_OUTPUT_NODES], -1, 1), name="weight2")
 
 bias1 = tf.Variable(tf.zeros([N_HIDDEN_NODES]), name="bias1")
 bias2 = tf.Variable(tf.zeros([N_OUTPUT_NODES]), name="bias2")
@@ -39,18 +40,22 @@ sess.run(init)
 
 for j in range(N_STEPS):
 
+	# training
 	sess.run(train_step, feed_dict={x_: x, y_: y})
 
 	if j % N_EPOCH == 0:
 			print('Run Number ', j)
-			print('Training ', sess.run(output, feed_dict={x_: x, y_: y}))
+			print('Ouput ', sess.run(output, feed_dict={x_: x, y_: y}))
 			print('Cost ', sess.run(cost, feed_dict={x_: x, y_: y}))
 
 
+while input('continue?') != 'no':
 
-userx1 = input("input")
-userx2 = input("input")
+	userx1 = input("input 1: ")
+	userx2 = input("input 2: ")
 
-user_input = [[userx1, userx2]]
+	user_input = [[userx1, userx2],[0, 0],[0, 0],[0, 0]]
 
-print('ouput, ', sess.run(output, feed_dict={x_: user_input, y_: y}))
+	out =
+	sess.run(output, feed_dict={x_: user_input, y_: y})[0][0]
+	print('ouput: ' + out)
