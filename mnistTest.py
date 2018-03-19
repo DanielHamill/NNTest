@@ -104,12 +104,11 @@ def feed_net_file(sess, file_path):
     return
 
 with tf.Session() as sess:
-    n_epochs = 1
-    5
+    n_epochs = 10
     prediction = net_model()
     train_net(sess)
 
     while input('press enter')!='end':
         # feed_net_mnist(sess)
-        fil = 'digit' + input('input digit') + '.png'
+        fil = 'images\digit' + input('input digit') + '.png'
         feed_net_file(sess,fil)
