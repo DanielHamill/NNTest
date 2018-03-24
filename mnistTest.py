@@ -108,7 +108,7 @@ with tf.Session() as sess:
     prediction = net_model()
     train_net(sess)
 
-    while input('press enter')!='end':
+    while raw_input('press enter')!='end':
         # feed_net_mnist(sess)
-        fil = 'images\digit' + input('input digit') + '.png'
+        fil = 'images/digit' + raw_input('input digit') + '.png'
         feed_net_file(sess,fil)
