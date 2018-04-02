@@ -122,12 +122,12 @@ with tf.Session() as sess:
     #saves session if user retrains net
     if(get_input('retrain net?') == 'y'):
         train_net(sess)
-        save_path = saver.save(sess, "/tmp/model.ckpt")
+        save_path = saver.save(sess, "tmp/model.ckpt")
         print("Model saved in path: %s" % save_path)
     else:
     #restores session if user does not retrain net
-        saver.restore(sess, "/tmp/model.ckpt")
-        print('restoring network saved in /tmp/model.ckpt')
+        saver.restore(sess, "tmp/model.ckpt")
+        print('restoring network saved in tmp/model.ckpt')
 
     training = False
 

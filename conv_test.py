@@ -108,7 +108,7 @@ with tf.Session() as sess:
     clear()
 
     #number of epochs
-    n_epochs = 7
+    n_epochs = 10
     prediction = conv_model()
     #saves current session
     saver = tf.train.Saver()
@@ -116,12 +116,12 @@ with tf.Session() as sess:
     #saves session if user retrains net
     if(get_input('retrain net?') == 'y'):
         train_net(sess)
-        save_path = saver.save(sess, "/tmp/model2.ckpt")
+        save_path = saver.save(sess, "tmp/model2.ckpt")
         print("Model saved in path: %s" % save_path)
     else:
     #restores session if user does not retrain net
-        saver.restore(sess, "/tmp/model2.ckpt")
-        print('restoring network saved in /tmp/model2.ckpt')
+        saver.restore(sess, "tmp/model2.ckpt")
+        print('restoring network saved in tmp/model2.ckpt')
 
     training = False
 
